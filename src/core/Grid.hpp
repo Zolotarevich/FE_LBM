@@ -3,7 +3,9 @@
 
 struct Grid {
     int nx, ny, nz;
-    //bool is3D() const { return nz > 1; }
+
+    Grid() = default;
+	Grid(int nx, int ny, int nz = 1) : nx(nx), ny(ny), nz(nz) {}
 
     int size() const { return nx * ny * nz; }
 

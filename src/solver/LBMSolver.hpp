@@ -4,53 +4,40 @@
 #include <iostream>
 #include <vector>
 
+#include "../src/core/Fields.hpp"
+#include "../src/core/Parameters.hpp"
+#include "../src/core/Grid.hpp"
+
 class LBMSolver
 {
 public:
 	LBMSolver();
 	~LBMSolver();
 
-	void CalculateMassFraction();
-	void FieldsInitialization();
-
+	void step();
+	void run();
 
 private:
-	/*int numberOfCompmonents;
+	int numComponents = 0;
+	Grid grid;
+	Parameters parameters;
+	Mixture mixture;
+	Fields fields;
 
-	std::vector<double> rho;
-	std::vector<double> molarFraction;
-	std::vector<double> massFraction;
+	std::vector<double> rhoCritical;
+	std::vector<double> rhoCriticalHat;
+	std::vector<double> temperatureCritical;
+	std::vector<double> temperatureCriticalHat;
+	std::vector<double> pressureCritical;
+	std::vector<double> pressureCriticalHat;
+	std::vector<double> mu;
+	std::vector<double> muHat;
+	std::vector<double> omega;
+	std::vector<double> kappaHat;
 
-	std::vector<double> ux;
-	std::vector<double> uy;
-	std::vector<double> uz;
-
-	std::vector<double> pressure;
-	std::vector<double> fugacity;
-	std::vector<double> chemicalPotential;
-
-	std::vector<double> gradientFugacityX;
-	std::vector<double> gradientFugacityY;
-	std::vector<double> gradientFugacityZ;
-	std::vector<double> gradientChemicalPotentialX;
-	std::vector<double> gradientChemicalPotentialY;
-	std::vector<double> gradientChemicalPotentialZ;
-	std::vector<double> gradientRhoX;
-	std::vector<double> gradientRhoY;
-	std::vector<double> gradientRhoZ;
-	std::vector<double> laplasRhoX;
-	std::vector<double> laplasRhoY;
-	std::vector<double> laplasRhoZ;
-	std::vector<double> gradientLaplasRhoX;
-	std::vector<double> gradientLaplasRhoY;
-	std::vector<double> gradientLaplasRhoZ;
-
-
-	std::vector<double> forceX;
-	std::vector<double> forceY;
-	std::vector<double> forceZ;
-
-	std::vector<double> f;*/
+	void CalculateMassFraction();
+	void Initialization(const CaseConfig& cfg);
+	
 };
 
 #endif 

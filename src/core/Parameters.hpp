@@ -2,6 +2,12 @@
 #include <vector>
 #include <string>
 
+struct CaseConfig {
+    int nx, ny, nz;
+    double temperature;
+    Mixture mixture;
+};
+
 struct Component {
     std::string name;
 
@@ -13,6 +19,7 @@ struct Component {
 };
 
 struct Mixture {
+    int numberOfComponents;
     std::vector<Component> components;
     std::vector<double> moleFractions;
     std::vector<double> moleFractionsInLiquidPhase;
@@ -21,11 +28,23 @@ struct Mixture {
     std::vector<double> massFractionsInLiquidPhase;
     std::vector<double> massFractionsInGasPhase;
     std::vector<double> viscosities;
-    double Sv;
-    double rhoLiquid;
-    double rhoGas;
-    double allMoleLiquid;
-    double allMoleGas;
+    double Sv = 0.;
+    double rhoLiquid = 0.;
+    double rhoGas = 0.;
+    double allMoleLiquid = 0.;
+    double allMoleGas = 0.;
+
+    void resize(int n) {
+        numberOfComponents = n;
+        components.resize(n);
+        moleFractions.resize(n);
+        moleFractionsInLiquidPhase.resize(n);
+        moleFractionsInGasPhase.resize(n);
+        massFractions.resize(n);
+        massFractionsInLiquidPhase.resize(n);
+        massFractionsInGasPhase.resize(n);
+        viscosities.resize(n);
+    }
 };
 
 struct DimensionlessCriticalParams {
@@ -56,9 +75,9 @@ struct LBMParams {
     double g = 0; // gravitational acceleration
 };
 
-struct FreeEnergyParams {
-    double kappa;     // gradient energy coefficient
-};
+//struct FreeEnergyParams {
+//    double kappa;     // gradient energy coefficient
+//};
 
 struct ThermoParams {
     double temperature;
@@ -66,7 +85,9 @@ struct ThermoParams {
 
 struct Parameters {
     LBMParams lbm;
-    FreeEnergyParams fe;
+    //FreeEnergyParams fe;
     ThermoParams thermo;
     Mixture mixture;
+    Component   component;
+	//DimensionlessCriticalParams dimensionlessCriticalParams;
 };

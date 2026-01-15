@@ -1,0 +1,24 @@
+# Example FE-LBM case file
+simulation:
+  dimension: 3
+  grid:
+    nx: 200
+    ny: 100
+    nz: 50
+
+thermo:
+  temperature: 373.15  # K
+
+mixture:
+  numberOfComponents: 3
+  components: ["C1", "C2", "C3"]
+  moleFractions: [70., 20., 10.]
+  moleFractionsInGasPhase: [70., 20., 10.]
+  moleFractionsInLiquidPhase: [70., 20., 10.]
+  viscosities: [1, 1, 1]
+
+  Sv: 0.25            # gas volume fraction
+  rhoLiquid: 720.0    # kg/m3
+  rhoGas: 45.0        # kg/m3
+  allMoleLiquid: 70.
+  allMoleGas: 30.
