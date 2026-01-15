@@ -78,6 +78,8 @@ set(LBM_SRC_FILES
 
     src/core/TimeIntegrator.hpp
     src/core/TimeIntegrator.cpp
+
+    src/core/Parameters.hpp
 )
 
 # -------------------------------
